@@ -1,17 +1,12 @@
 module Cards
-  @@cards = { :spades => { :A => "1", :"2" => "2", :"3" => "3", :"4" => "4", :"5" => "5", :"6" => "6", :"7" => "7",
-                           :"8" => "8", :"9" => "9", :"10" => "10", :"J" => "11", :"Q" => "12", :"K" => "13" },
+  @@cards = { :spades => { :A => 1, :"2" => "2", :"3" => "3", :"4" => "4", :"5" => "5", :"6" => "6", :"7" => "7",
+                           :"8" => "8", :"9" => "9", :"10" => "10", :"J" => "10", :"Q" => "10", :"K" => "10" },
               :diamonds => { :A => "1", :"2" => "2", :"3" => "3", :"4" => "4", :"5" => "5", :"6" => "6", :"7" => "7",
-                             :"8" => "8", :"9" => "9", :"10" => "10", :"J" => "11", :"Q" => "12", :"K" => "13" },
+                             :"8" => "8", :"9" => "9", :"10" => "10", :"J" => "10", :"Q" => "10", :"K" => "10" },
               :hearts => { :A => "1", :"2" => "2", :"3" => "3", :"4" => "4", :"5" => "5", :"6" => "6", :"7" => "7",
-                           :"8" => "8", :"9" => "9", :"10" => "10", :"J" => "11", :"Q" => "12", :"K" => "13" },
+                           :"8" => "8", :"9" => "9", :"10" => "10", :"J" => "10", :"Q" => "10", :"K" => "10" },
               :clubs => { :A => "1", :"2" => "2", :"3" => "3", :"4" => "4", :"5" => "5", :"6" => "6", :"7" => "7",
-                          :"8" => "8", :"9" => "9", :"10" => "10", :"J" => "11", :"Q" => "12", :"K" => "13" } }
-
-  # @@symbol = { :spades => :spades, :diamonds => :diamonds, :hearts => :hearts, :clubs => :clubs }
-
-  @@values = { :A => "1", :"2" => "2", :"3" => "3", :"4" => "4", :"5" => "5", :"6" => "6", :"7" => "7",
-               :"8" => "8", :"9" => "9", :"10" => "10", :"J" => "11", :"Q" => "12", :"K" => "13" }
+                          :"8" => "8", :"9" => "9", :"10" => "10", :"J" => "10", :"Q" => "10", :"K" => "10" } }
 
   @@players_cards = []
   @@dealers_cards = []
@@ -24,34 +19,27 @@ class Card
   include Cards
 
   def initialize
-    # pull_card
-    # values = @@cards.values
-    # puts(values[rand(values.size)])
   end
-
-  # def pull_card
-  #   symbol_key = random_symbol_key
-  #   value_key = random_value_key
-  #   puts(@@cards[symbol_key][value_key])
-  #   delete_key_value(symbol_key, value_key)
-  # end
 
   def random_symbol_key
-    return @@cards.keys.shuffle[0]
+    @@cards.keys.shuffle[0]
   end
 
-  def random_value_key
-    return @@values.keys.shuffle[0]
+  def random_value_key(symbol_key)
+    # return @@values.keys.shuffle[0]
+    @@cards[symbol_key].keys.shuffle[0]
   end
 
   def delete_key_value(symbol_key, value_key)
     @@cards[symbol_key].delete(value_key)
   end
 
-  def add_to_hand_player
+  def add_card_player_array(symbol_key, value_key)
+    @@players_cards.append(@@cards[symbol_key][value_key])
   end
 
-  def add_to_hand_dealer
+  def add_card_dealer_array(symbol_key, value_key)
+    @@dealers_cards.append(@@cards[symbol_key][value_key])
   end
 end
 
