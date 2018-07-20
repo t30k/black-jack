@@ -32,7 +32,7 @@ class Dealer
     symbol_key = @@card.random_symbol_key
     value_key = @@card.random_value_key(symbol_key)
     if (i == 0)
-      puts('ディーラーの引いたカードは' + symbol_key.to_s + 'の' + @@cards[symbol_key][value_key].to_s + 'です。')
+      puts('ディーラーの引いたカードは' + symbol_key.to_s + 'の' + @@deck[symbol_key][value_key].to_s + 'です。')
     elsif (i == 1)
       puts('ディーラーの2枚目のカードはわかりません。')
       @symbol = symbol_key
@@ -42,7 +42,7 @@ class Dealer
   end
 
   def is_card_draw
-   true if @@dealers_cards.map(&:to_i).sum < 17
+   true if @@dealer_cards.map(&:to_i).sum < 17
   end
 
   def display_second_card
@@ -50,6 +50,6 @@ class Dealer
   end
 
   def output_score
-    puts('ディーラーの現在の得点は' + @@dealers_cards.map(&:to_i).sum.to_s + 'です。')
+    puts('ディーラーの現在の得点は' + @@dealer_cards.map(&:to_i).sum.to_s + 'です。')
   end
 end

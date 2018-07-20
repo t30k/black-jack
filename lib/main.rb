@@ -1,18 +1,18 @@
-require './player'
+require './user'
 require './dealer'
 
 class Main
   include Cards
 
-  @@player = Player.new
+  @@user = User.new
   @@dealer = Dealer.new
 
   def initialize
     puts("ゲームを開始します。")
-    @@player.play
+    @@user.play
     @@dealer.play
-    player_score = @@players_cards.map(&:to_i).sum
-    dealer_score = @@dealers_cards.map(&:to_i).sum
+    player_score = @@user_cards.map(&:to_i).sum
+    dealer_score = @@dealer_cards.map(&:to_i).sum
     puts('あなたの得点は' + player_score.to_s + 'です。')
     puts('ディーラーの得点は' + dealer_score.to_s + 'です。')
     judge(player_score, dealer_score)
