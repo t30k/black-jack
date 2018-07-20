@@ -8,8 +8,8 @@ module Cards
             :clubs => { :A => "1", :"2" => "2", :"3" => "3", :"4" => "4", :"5" => "5", :"6" => "6", :"7" => "7",
                           :"8" => "8", :"9" => "9", :"10" => "10", :"J" => "10", :"Q" => "10", :"K" => "10" } }
 
-  @@user_cards = []
-  @@dealer_cards = []
+  @@user_deck = []
+  @@dealer_deck = []
 end
 
 class Card
@@ -26,7 +26,6 @@ class Card
   end
 
   def random_value_key(symbol_key)
-    # return @@values.keys.shuffle[0]
     @@deck[symbol_key].keys.shuffle[0]
   end
 
@@ -34,13 +33,7 @@ class Card
     @@deck[symbol_key].delete(value_key)
   end
 
-  def add_card_user_array(symbol_key, value_key)
-    @@user_cards.append(@@deck[symbol_key][value_key])
-  end
-
-  def add_card_dealer_array(symbol_key, value_key)
-    @@dealer_cards.append(@@deck[symbol_key][value_key])
-  end
+  # def delete_key_value(symbol_key, value_key)
+  #   @@deck[symbol_key].delete(value_key)
+  # end
 end
-
-# Card.new

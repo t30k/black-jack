@@ -1,11 +1,16 @@
 require './card'
+require './player'
 
-class User
-  include Cards
-
-  @@card = Card.new
+class User < Player
+  @@stack = []
 
   def initialize
+    # 2.times do
+    #   execute
+    # end
+  end
+
+  def start_up
     2.times do
       execute
     end
@@ -16,17 +21,12 @@ class User
     while is_card_draw
       execute
       output_score
-      if is_bust
+      if is_bust(self)
+        puts('ディーラーの勝ちです！')
         puts("ゲームを終了します。")
         exit!
       end
     end
-  end
-
-  def execute
-    symbol_key, value_key = pull_card
-    @@card.add_card_user_array(symbol_key, value_key)
-    @@card.delete_key_value(symbol_key, value_key)
   end
 
   def pull_card
@@ -48,11 +48,15 @@ class User
     end
   end
 
-  def is_bust
-    true if @@user_cards.map(&:to_i).sum > 21
+  def add_card_player_deck(symbol_key, value_key)
+    @@stack.push(@@deck[symbol_key][value_key])
   end
 
+  # def is_bust
+  #   true if @@user_cards.map(&:to_i).sum > 21
+  # end
+
   def output_score
-    puts('あなたの現在の得点は' + @@user_cards.map(&:to_i).sum.to_s + 'です。')
+    puts('あなたの現在の得点は' + @@user_deck.map(&:to_i).sum.to_s + 'です。')
   end
 end
